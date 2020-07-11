@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "strict": true,
+    "lib": [
+      "es2015",
+      "dom",
+      "esnext"
+    ],
+    "types": [
+      "jquery",
+      "lodash"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "lib/*": [
+        "lib/*"
+      ]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./ts-types"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "lib/**/*.ts",
+    "ts-types/**/*.ts"
+  ]
+}
