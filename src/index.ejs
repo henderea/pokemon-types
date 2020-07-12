@@ -35,12 +35,14 @@ if(baseIcon && baseIcon != '') {
 }
 %>
 <!--suppress HtmlRequiredAltAttribute, RequiredAttributes -->
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
         <title><%= title %></title>
         <meta property="og:type" content="<%= type %>" />
         <meta property="og:title" content="<%= title %>" />
         <meta property="og:description" content="<%= description %>" />
+        <meta name="description" content="<%= description %>" />
         <% if(siteName) { %>
             <meta property="og:site_name" content="<%= siteName %>" />
         <% } %>
@@ -63,6 +65,9 @@ if(baseIcon && baseIcon != '') {
         <% } %>
     </head>
     <body>
+        <noscript>
+            <h1>JavaScript is required for this page</h1>
+        </noscript>
         <div class="active-types-container">
             <!-- ko foreach: activeTypes -->
             <div class="active-type" data-bind="click: $parent.removeActiveType.bind($parent)">
