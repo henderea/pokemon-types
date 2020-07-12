@@ -14,5 +14,14 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 window.addEventListener('load', () => {
-  ko.applyBindings(new Model());
+  let model = new Model();
+  ko.applyBindings(model);
+  let updateSizingInfo = () => window.setTimeout(() => {
+    let icon: HTMLElement | null = document.querySelector('.icon') as HTMLElement | null;
+    model.iconSize = icon ? icon.offsetWidth : -1;
+    model.windowWidth = window.innerWidth;
+    model.windowHeight = window.innerHeight;
+  }, 250);
+  window.addEventListener('resize', updateSizingInfo);
+  updateSizingInfo();
 });

@@ -57,6 +57,7 @@ if(baseIcon && baseIcon != '') {
             <link rel="icon" href="<%= publicUrl %>/favicon.svg" type="image/svg+xml" />
             <link rel="shortcut icon" href="<%= publicUrl %>/favicon.svg" type="image/svg+xml" />
         <% } %>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,900" />
         <link rel="apple-touch-icon" sizes="360x360" href="<%= publicUrl %>/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +70,7 @@ if(baseIcon && baseIcon != '') {
         <noscript>
             <h1>JavaScript is required for this page</h1>
         </noscript>
-        <span data-bind="text: extraInfo, visible: showDebug"></span>
+        <div data-bind="text: extraInfo, visible: showDebug" class="extra-info" style="display: none;"></div>
         <div class="active-types-container">
             <!-- ko foreach: activeTypes -->
             <div class="active-type" data-bind="click: $parent.removeActiveType.bind($parent)">

@@ -3,7 +3,11 @@ import { PokemonType } from 'lib/pokemon-types';
 declare class Model {
     readonly activeTypes: ko.ObservableArray<PokemonType>;
     private readonly _showDebug;
+    private readonly _iconSize;
+    private readonly _windowWidth;
+    private readonly _windowHeight;
     private readonly _hasActiveTypes;
+    private readonly _extraInfo;
     readonly allTypes: Array<{
         className: ko.PureComputed<string>;
         type: PokemonType;
@@ -14,6 +18,12 @@ declare class Model {
     get hasActiveTypes(): boolean;
     get showDebug(): boolean;
     set showDebug(value: boolean);
+    get iconSize(): number;
+    set iconSize(value: number);
+    get windowWidth(): number;
+    set windowWidth(value: number);
+    get windowHeight(): number;
+    set windowHeight(value: number);
     get extraInfo(): string;
     toggleActiveType({ type }: {
         type: PokemonType;

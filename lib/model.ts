@@ -29,7 +29,11 @@ function classNameComp(self: Model, type: PokemonType): ko.PureComputed<string> 
 class Model {
   readonly activeTypes: ko.ObservableArray<PokemonType>;
   private readonly _showDebug: ko.Observable<boolean>;
+  private readonly _iconSize: ko.Observable<number>;
+  private readonly _windowWidth: ko.Observable<number>;
+  private readonly _windowHeight: ko.Observable<number>;
   private readonly _hasActiveTypes: ko.PureComputed<boolean>;
+  private readonly _extraInfo: ko.PureComputed<string>;
   readonly allTypes: Array<{ className: ko.PureComputed<string>, type: PokemonType }>;
   private _debugToggleCount: number = 0;
   private _debugToggleLast: PokemonType | null = null;
@@ -37,6 +41,14 @@ class Model {
   constructor() {
     this.activeTypes = obsArr();
     this._showDebug = obs(false);
+    this._iconSize = obs(-1);
+    this._windowWidth = obs(-1);
+    this._windowHeight = obs(-1);
+    this._extraInfo = comp(this, (self: Model) => {
+      // @ts-ignore
+      const standalone: Optional<boolean> = window.navigator.standalone;
+      return `standalone: ${standalone === true ? 'true' : standalone === false ? 'false' : standalone === undefined ? 'undefined' : `'${standalone}' (${typeof standalone})`}; deployment id: ${deploymentId}; icon size: ${self.iconSize <= 0 ? '?' : self.iconSize}px; window: ${self.windowWidth}x${self.windowHeight}px`;
+    });
     this.allTypes = TYPE_LIST.map((type: PokemonType) => ({
       className: classNameComp(this, type),
       type
@@ -50,10 +62,19 @@ class Model {
 
   set showDebug(value: boolean) { this._showDebug(value); }
 
-  get extraInfo(): string {
-    // @ts-ignore
-    return `standalone: ${window.navigator.standalone === true ? 'true' : window.navigator.standalone === false ? 'false' : `'${window.navigator.standalone}' (${typeof window.navigator.standalone})`}; deployment id: ${deploymentId}`;
-  }
+  get iconSize(): number { return this._iconSize(); }
+
+  set iconSize(value: number) { this._iconSize(value); }
+
+  get windowWidth(): number { return this._windowWidth(); }
+
+  set windowWidth(value: number) { this._windowWidth(value); }
+
+  get windowHeight(): number { return this._windowHeight(); }
+
+  set windowHeight(value: number) { this._windowHeight(value); }
+
+  get extraInfo(): string { return this._extraInfo(); }
 
   toggleActiveType({ type }: { type: PokemonType }): void {
     if(this._debugToggleLast == type) {
