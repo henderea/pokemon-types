@@ -23,26 +23,37 @@ export declare type PokemonTypeName = typeof TYPE_NAMES[PokemonTypeKeys];
 export declare const TYPE_NAME_LIST: PokemonTypeName[];
 export declare type SingleTypeAttackMultiplier = 2 | 1 | 0.5 | 0;
 export declare type AttackMultiplier = 4 | 2 | 1 | 0.5 | 0.25 | 0;
-declare const makeInstance: unique symbol;
-export declare class PokemonType {
+export declare function extractType(type: PokemonType | PokemonTypeName): PokemonTypeName;
+export declare function extractAllTypes(...types: Array<PokemonType | PokemonTypeName>): PokemonTypeName[];
+export declare function convertType(type: PokemonType | PokemonTypeName): PokemonType;
+export declare function convertAllTypes(...types: Array<PokemonType | PokemonTypeName>): Array<PokemonType>;
+export interface PokemonType {
+    readonly typeDisplay: string;
+    readonly typeName: PokemonTypeName;
+    readonly weakTypes: PokemonTypeName[];
+    readonly strongTypes: PokemonTypeName[];
+    readonly immuneTypes: PokemonTypeName[];
+    weakTo(type: PokemonType | PokemonTypeName): boolean;
+    strongTo(type: PokemonType | PokemonTypeName): boolean;
+    immuneTo(type: PokemonType | PokemonTypeName): boolean;
+    defense(type: PokemonType | PokemonTypeName): SingleTypeAttackMultiplier;
+    attack(type1: PokemonType | PokemonTypeName, type2?: PokemonType | PokemonTypeName): AttackMultiplier;
+}
+export declare class PokemonTypeImpl implements PokemonType {
     readonly typeName: PokemonTypeName;
     readonly weakTypes: PokemonTypeName[];
     readonly strongTypes: PokemonTypeName[];
     readonly immuneTypes: PokemonTypeName[];
     readonly typeDisplay: string;
-    private constructor();
-    static [makeInstance](typeName: PokemonTypeName, weakTypes: PokemonTypeName[], strongTypes: PokemonTypeName[], immuneTypes?: PokemonTypeName[]): PokemonType;
+    constructor(typeName: PokemonTypeName, weakTypes: PokemonTypeName[], strongTypes: PokemonTypeName[], immuneTypes?: PokemonTypeName[]);
     weakTo(type: PokemonType | PokemonTypeName): boolean;
     strongTo(type: PokemonType | PokemonTypeName): boolean;
     immuneTo(type: PokemonType | PokemonTypeName): boolean;
-    static extract(type: PokemonType | PokemonTypeName): PokemonTypeName;
-    static extractAll(...types: Array<PokemonType | PokemonTypeName>): PokemonTypeName[];
-    static convert(type: PokemonType | PokemonTypeName): PokemonType;
-    static convertAll(...types: Array<PokemonType | PokemonTypeName>): Array<PokemonType>;
     defense(type: PokemonType | PokemonTypeName): SingleTypeAttackMultiplier;
     attack(type1: PokemonType | PokemonTypeName, type2?: Optional<PokemonType | PokemonTypeName>): AttackMultiplier;
 }
 export declare const TYPES: {
     readonly [key in PokemonTypeKeys]: PokemonType;
 };
+export declare const TYPE_LIST: PokemonType[];
 export {};

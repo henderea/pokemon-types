@@ -8,6 +8,7 @@ declare interface Dictionary<T> {
 
 declare var process: {
   env: {
-    NODE_ENV: 'development' | 'production'
+    NODE_ENV: 'development' | 'production',
+    VERCEL_URL: Optional<string>;
   }
 };

@@ -33,45 +33,57 @@ export const TYPE_NAME_LIST: PokemonTypeName[] = t('normal', 'fire', 'water', 'g
 export type SingleTypeAttackMultiplier = 2 | 1 | 0.5 | 0;
 export type AttackMultiplier = 4 | 2 | 1 | 0.5 | 0.25 | 0;
 
-const makeInstance = Symbol('makeInstance');
+export function extractType(type: PokemonType | PokemonTypeName): PokemonTypeName {
+  return type instanceof PokemonTypeImpl ? type.typeName : (type as PokemonTypeName);
+}
 
-export class PokemonType {
+export function extractAllTypes(...types: Array<PokemonType | PokemonTypeName>): PokemonTypeName[] {
+  return types.map(extractType);
+}
+
+export function convertType(type: PokemonType | PokemonTypeName): PokemonType {
+  return type instanceof PokemonTypeImpl ? type : TYPES[type as PokemonTypeName];
+}
+
+export function convertAllTypes(...types: Array<PokemonType | PokemonTypeName>): Array<PokemonType> {
+  return types.map(convertType);
+}
+
+export interface PokemonType {
+  readonly typeDisplay: string;
+  readonly typeName: PokemonTypeName;
+  readonly weakTypes: PokemonTypeName[];
+  readonly strongTypes: PokemonTypeName[];
+  readonly immuneTypes: PokemonTypeName[];
+
+  weakTo(type: PokemonType | PokemonTypeName): boolean;
+
+  strongTo(type: PokemonType | PokemonTypeName): boolean;
+
+  immuneTo(type: PokemonType | PokemonTypeName): boolean;
+
+  defense(type: PokemonType | PokemonTypeName): SingleTypeAttackMultiplier;
+
+  attack(type1: PokemonType | PokemonTypeName, type2?: PokemonType | PokemonTypeName): AttackMultiplier;
+}
+
+export class PokemonTypeImpl implements PokemonType {
   readonly typeDisplay: string;
 
-  private constructor(readonly typeName: PokemonTypeName, readonly weakTypes: PokemonTypeName[], readonly strongTypes: PokemonTypeName[], readonly immuneTypes: PokemonTypeName[] = []) {
+  constructor(readonly typeName: PokemonTypeName, readonly weakTypes: PokemonTypeName[], readonly strongTypes: PokemonTypeName[], readonly immuneTypes: PokemonTypeName[] = []) {
     this.typeDisplay = upperCase(typeName);
   }
 
-  static [makeInstance](typeName: PokemonTypeName, weakTypes: PokemonTypeName[], strongTypes: PokemonTypeName[], immuneTypes: PokemonTypeName[] = []): PokemonType {
-    return new PokemonType(typeName, weakTypes, strongTypes, immuneTypes);
-  }
-
   weakTo(type: PokemonType | PokemonTypeName): boolean {
-    return this.weakTypes.includes(PokemonType.extract(type));
+    return this.weakTypes.includes(extractType(type));
   }
 
   strongTo(type: PokemonType | PokemonTypeName): boolean {
-    return this.strongTypes.includes(PokemonType.extract(type));
+    return this.strongTypes.includes(extractType(type));
   }
 
   immuneTo(type: PokemonType | PokemonTypeName): boolean {
-    return this.immuneTypes.includes(PokemonType.extract(type));
-  }
-
-  static extract(type: PokemonType | PokemonTypeName): PokemonTypeName {
-    return type instanceof PokemonType ? type.typeName : type;
-  }
-
-  static extractAll(...types: Array<PokemonType | PokemonTypeName>): PokemonTypeName[] {
-    return types.map(PokemonType.extract);
-  }
-
-  static convert(type: PokemonType | PokemonTypeName): PokemonType {
-    return type instanceof PokemonType ? type : TYPES[type];
-  }
-
-  static convertAll(...types: Array<PokemonType | PokemonTypeName>): Array<PokemonType> {
-    return types.map(PokemonType.convert);
+    return this.immuneTypes.includes(extractType(type));
   }
 
   defense(type: PokemonType | PokemonTypeName): SingleTypeAttackMultiplier {
@@ -82,8 +94,8 @@ export class PokemonType {
   }
 
   attack(type1: PokemonType | PokemonTypeName, type2: Optional<PokemonType | PokemonTypeName> = null): AttackMultiplier {
-    type1 = PokemonType.convert(type1);
-    type2 = type2 && PokemonType.convert(type2);
+    type1 = convertType(type1);
+    type2 = type2 && convertType(type2);
     let multiplier: number = type1.defense(this);
     if(type2) {
       multiplier = multiplier * type2.defense(this);
@@ -93,7 +105,7 @@ export class PokemonType {
 }
 
 function p(typeName: PokemonTypeName, weakTypes: PokemonTypeName[], strongTypes: PokemonTypeName[], immuneTypes: PokemonTypeName[] = []): PokemonType {
-  return PokemonType[makeInstance](typeName, weakTypes, strongTypes, immuneTypes);
+  return new PokemonTypeImpl(typeName, weakTypes, strongTypes, immuneTypes);
 }
 
 export const TYPES: { readonly [key in PokemonTypeKeys]: PokemonType } = {
@@ -116,3 +128,5 @@ export const TYPES: { readonly [key in PokemonTypeKeys]: PokemonType } = {
   steel: p('steel', t('fire', 'fighting', 'ground'), t('normal', 'grass', 'ice', 'flying', 'psychic', 'bug', 'rock', 'dragon', 'steel', 'fairy'), t('poison')),
   fairy: p('fairy', t('poison', 'steel'), t('fighting', 'bug', 'dark'), t('dragon'))
 };
+
+export const TYPE_LIST: PokemonType[] = convertAllTypes(...TYPE_NAME_LIST);

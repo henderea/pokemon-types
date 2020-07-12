@@ -11,6 +11,13 @@ body, html {
   overflow: hidden;
 }
 
+.main-container {
+  margin:  0;
+  padding: 0;
+  width:   100%;
+  height:  100%;
+}
+
 .extra-info {
   padding:       10px;
   margin:        5px;
@@ -27,7 +34,6 @@ body, html {
   border:        5px solid limegreen;
   border-radius: 80px;
   width:         290px;
-  transition:    200ms all;
   height:        170px;
 
   .active-type {
@@ -42,7 +48,6 @@ body, html {
   border:        5px solid dodgerblue;
   border-radius: 80px;
   width:         1130px;
-  transition:    200ms all;
 
   .type {
     display: inline-block;
@@ -55,8 +60,9 @@ body, html {
   height:        100px;
   width:         100px;
   margin:        auto;
-  transition:    200ms all;
+  transition:    filter 200ms, transform 200ms;
   border:        5px solid #fff;
+  cursor:        pointer;
 
   &.x0 {
     border-color: #000;
@@ -85,7 +91,6 @@ body, html {
   &:hover {
     filter:    saturate(200%);
     transform: scale(1.1);
-    cursor:    pointer;
   }
 
   img {
@@ -185,17 +190,20 @@ body, html {
   box-shadow: 0 0 20px #539ddf;
 }
 
+// 100px - 9x2
 @media screen and (min-width: 1150px) and (min-height: 500px) {
   .all-types-container {
-    width:         1130px;
-    border-radius: 85px;
-    padding:       20px;
+    width: 1130px;
   }
   .active-types-container {
-    width:         290px;
-    height:        170px;
+    width:  290px;
+    height: 170px;
+  }
+  .active-types-container, .all-types-container {
     border-radius: 85px;
     padding:       20px;
+    margin-left:   10px;
+    margin-right:  10px;
   }
   .icon {
     width:  100px;
@@ -203,18 +211,21 @@ body, html {
   }
 }
 
+// 100px - 6x3
 @media screen and (min-width: 790px) and (min-height: 620px) {
-  @media (max-width: 1150px) {
+  @media (max-width: 1150px - 1px) {
     .all-types-container {
-      width:         770px;
-      border-radius: 85px;
-      padding:       20px;
+      width: 770px;
     }
     .active-types-container {
-      width:         290px;
-      height:        170px;
+      width:  290px;
+      height: 170px;
+    }
+    .active-types-container, .all-types-container {
       border-radius: 85px;
       padding:       20px;
+      margin-left:   10px;
+      margin-right:  10px;
     }
     .icon {
       width:  100px;
@@ -223,18 +234,44 @@ body, html {
   }
 }
 
+// 100px - 3x6
+@media screen and (min-width: 430px) and (min-height: 980px) {
+  @media (max-width: 790px - 1px) {
+    .all-types-container {
+      width: 410px;
+    }
+    .active-types-container {
+      width:  290px;
+      height: 170px;
+    }
+    .active-types-container, .all-types-container {
+      border-radius: 85px;
+      padding:       20px;
+      margin-left:   auto;
+      margin-right:  auto;
+    }
+    .icon {
+      width:  100px;
+      height: 100px;
+    }
+  }
+}
+
+// 80px - 9x2
 @media screen and (min-width: 970px) and (min-height: 440px) {
-  @media (max-width: 1150px) and (max-height: 620px) {
+  @media (max-width: 1150px - 1px) and (max-height: 620px - 1px) {
     .all-types-container {
-      width:         950px;
-      border-radius: 75px;
-      padding:       20px;
+      width: 950px;
     }
     .active-types-container {
-      width:         250px;
-      height:        150px;
+      width:  250px;
+      height: 150px;
+    }
+    .active-types-container, .all-types-container {
       border-radius: 75px;
       padding:       20px;
+      margin-left:   10px;
+      margin-right:  10px;
     }
     .icon {
       width:  80px;
@@ -243,38 +280,21 @@ body, html {
   }
 }
 
-@media screen and (min-width: 430px) and (min-height: 970px) {
-  @media (max-width: 790px) {
-    .all-types-container {
-      width:         410px;
-      border-radius: 85px;
-      padding:       20px;
-    }
-    .active-types-container {
-      width:         290px;
-      height:        170px;
-      border-radius: 85px;
-      padding:       20px;
-    }
-    .icon {
-      width:  100px;
-      height: 100px;
-    }
-  }
-}
-
+// 80px - 6x3
 @media screen and (min-width: 670px) and (min-height: 540px) {
-  @media (max-width: 970px) and (max-height: 970px) {
+  @media (max-width: 790px - 1px) and (max-height: 980px - 1px) {
     .all-types-container {
-      width:         650px;
-      border-radius: 75px;
-      padding:       20px;
+      width: 650px;
     }
     .active-types-container {
-      width:         250px;
-      height:        150px;
+      width:  250px;
+      height: 150px;
+    }
+    .active-types-container, .all-types-container {
       border-radius: 75px;
       padding:       20px;
+      margin-left:   10px;
+      margin-right:  10px;
     }
     .icon {
       width:  80px;
@@ -283,18 +303,21 @@ body, html {
   }
 }
 
+// 80px - 3x6
 @media screen and (min-width: 370px) and (min-height: 840px) {
-  @media (max-width: 670px) {
+  @media (max-width: 670px - 1px) {
     .all-types-container {
-      width:         350px;
-      border-radius: 75px;
-      padding:       20px;
+      width: 350px;
     }
     .active-types-container {
-      width:         250px;
-      height:        150px;
+      width:  250px;
+      height: 150px;
+    }
+    .active-types-container, .all-types-container {
       border-radius: 75px;
       padding:       20px;
+      margin-left:   auto;
+      margin-right:  auto;
     }
     .icon {
       width:  80px;
@@ -303,18 +326,21 @@ body, html {
   }
 }
 
+// 60px - 9x2
 @media screen and (min-width: 790px) and (min-height: 380px) {
-  @media (max-height: 440px), (max-height: 540px) and (max-width: 970px) {
+  @media (max-height: 500px - 1px), (max-height: 540px - 1px) and (max-width: 970px - 1px) {
     .all-types-container {
-      width:         770px;
-      border-radius: 65px;
-      padding:       20px;
+      width: 770px;
     }
     .active-types-container {
-      width:         210px;
-      height:        130px;
+      width:  210px;
+      height: 130px;
+    }
+    .active-types-container, .all-types-container {
       border-radius: 65px;
       padding:       20px;
+      margin-left:   10px;
+      margin-right:  10px;
     }
     .icon {
       width:  60px;
@@ -323,18 +349,21 @@ body, html {
   }
 }
 
+// 60px - 6x3
 @media screen and (min-width: 550px) and (min-height: 460px) {
-  @media (max-width: 790px) and (max-height: 540px), (max-width: 670px) {
+  @media (max-width: 790px - 1px) and (max-height: 540px - 1px), (max-width: 670px - 1px) {
     .all-types-container {
-      width:         530px;
-      border-radius: 65px;
-      padding:       20px;
+      width: 530px;
     }
     .active-types-container {
-      width:         210px;
-      height:        130px;
+      width:  210px;
+      height: 130px;
+    }
+    .active-types-container, .all-types-container {
       border-radius: 65px;
       padding:       20px;
+      margin-left:   10px;
+      margin-right:  10px;
     }
     .icon {
       width:  60px;
@@ -343,18 +372,21 @@ body, html {
   }
 }
 
+// 60px - 3x6
 @media screen and (min-width: 310px) and (min-height: 700px) {
-  @media (max-width: 550px) and (max-height: 840px), (max-width: 370px) {
+  @media (max-width: 550px - 1px) and (max-height: 840px - 1px), (max-width: 370px - 1px) {
     .all-types-container {
-      width:         290px;
-      border-radius: 65px;
-      padding:       20px;
+      width: 290px;
     }
     .active-types-container {
-      width:         210px;
-      height:        130px;
+      width:  210px;
+      height: 130px;
+    }
+    .active-types-container, .all-types-container {
       border-radius: 65px;
       padding:       20px;
+      margin-left:   auto;
+      margin-right:  auto;
     }
     .icon {
       width:  60px;
@@ -363,18 +395,21 @@ body, html {
   }
 }
 
+// 40px - 9x2
 @media screen and (min-width: 590px) and (min-height: 280px) {
-  @media (max-height: 380px), (max-width: 790px) and (max-height: 460px) {
+  @media (max-height: 380px - 1px), (max-width: 790px - 1px) and (max-height: 460px - 1px) {
     .all-types-container {
-      width:         570px;
-      border-radius: 45px;
-      padding:       10px;
+      width: 570px;
     }
     .active-types-container {
-      width:         150px;
-      height:        90px;
+      width:  150px;
+      height: 90px;
+    }
+    .active-types-container, .all-types-container {
       border-radius: 45px;
       padding:       10px;
+      margin-left:   10px;
+      margin-right:  10px;
     }
     .icon {
       width:  40px;
@@ -383,18 +418,21 @@ body, html {
   }
 }
 
+// 40px - 6x3
 @media screen and (min-width: 410px) and (min-height: 340px) {
-  @media (max-width: 590px) and (max-height: 460px), (max-width: 550px) and (max-height: 700px) {
+  @media (max-width: 590px - 1px) and (max-height: 460px - 1px), (max-width: 550px - 1px) and (max-height: 700px - 1px) {
     .all-types-container {
-      width:         390px;
-      border-radius: 45px;
-      padding:       10px;
+      width: 390px;
     }
     .active-types-container {
-      width:         150px;
-      height:        90px;
+      width:  150px;
+      height: 90px;
+    }
+    .active-types-container, .all-types-container {
       border-radius: 45px;
       padding:       10px;
+      margin-left:   10px;
+      margin-right:  10px;
     }
     .icon {
       width:  40px;
@@ -403,18 +441,21 @@ body, html {
   }
 }
 
+// 40px - 3x6
 @media screen and (min-width: 230px) and (min-height: 520px) {
-  @media (max-width: 410px) and (max-height: 700px), (max-width: 310px) {
+  @media (max-width: 410px - 1px) and (max-height: 700px - 1px), (max-width: 310px - 1px) {
     .all-types-container {
-      width:         210px;
-      border-radius: 45px;
-      padding:       10px;
+      width: 210px;
     }
     .active-types-container {
-      width:         150px;
-      height:        90px;
+      width:  150px;
+      height: 90px;
+    }
+    .active-types-container, .all-types-container {
       border-radius: 45px;
       padding:       10px;
+      margin-left:   auto;
+      margin-right:  auto;
     }
     .icon {
       width:  40px;
@@ -423,26 +464,29 @@ body, html {
   }
 }
 
+// 36px - 9x2
 @media screen and (min-width: 500px) and (min-height: 250px) {
-  @media (max-height: 280px) {
+  @media (max-height: 340px - 1px) and (max-width: 590px - 1px), (max-height: 280px - 1px) {
     .all-types-container {
-      width:         480px;
-      border-radius: 40px;
-      padding:       10px;
+      width: 480px;
 
       .type {
         margin: 7px;
       }
     }
     .active-types-container {
-      width:         130px;
-      height:        80px;
-      border-radius: 40px;
-      padding:       10px;
+      width:  130px;
+      height: 80px;
 
       .active-type {
         margin: 7px;
       }
+    }
+    .active-types-container, .all-types-container {
+      border-radius: 40px;
+      padding:       10px;
+      margin-left:   10px;
+      margin-right:  10px;
     }
     .icon {
       width:  36px;
@@ -451,26 +495,29 @@ body, html {
   }
 }
 
+// 36px - 6x3
 @media screen and (min-width: 350px) and (min-height: 300px) {
-  @media (max-width: 410px) and (max-height: 520px) {
+  @media (max-width: 410px - 1px) and (max-height: 520px - 1px) {
     .all-types-container {
-      width:         330px;
-      border-radius: 40px;
-      padding:       10px;
+      width: 330px;
 
       .type {
         margin: 7px;
       }
     }
     .active-types-container {
-      width:         130px;
-      height:        80px;
-      border-radius: 40px;
-      padding:       10px;
+      width:  130px;
+      height: 80px;
 
       .active-type {
         margin: 7px;
       }
+    }
+    .active-types-container, .all-types-container {
+      border-radius: 40px;
+      padding:       10px;
+      margin-left:   10px;
+      margin-right:  10px;
     }
     .icon {
       width:  36px;
@@ -479,26 +526,29 @@ body, html {
   }
 }
 
+// 36px - 3x6
 @media screen and (min-width: 200px) and (min-height: 450px) {
-  @media (max-width: 350px) and (max-height: 520px) {
+  @media (max-width: 350px - 1px) and (max-height: 520px - 1px) {
     .all-types-container {
-      width:         180px;
-      border-radius: 40px;
-      padding:       10px;
+      width: 180px;
 
       .type {
         margin: 7px;
       }
     }
     .active-types-container {
-      width:         130px;
-      height:        80px;
-      border-radius: 40px;
-      padding:       10px;
+      width:  130px;
+      height: 80px;
 
       .active-type {
         margin: 7px;
       }
+    }
+    .active-types-container, .all-types-container {
+      border-radius: 40px;
+      padding:       10px;
+      margin-left:   auto;
+      margin-right:  auto;
     }
     .icon {
       width:  36px;

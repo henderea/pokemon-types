@@ -10,8 +10,8 @@
       "esnext"
     ],
     "types": [
-      "jquery",
-      "lodash"
+      "lodash",
+      "knockout"
     ],
     "baseUrl": ".",
     "paths": {

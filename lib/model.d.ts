@@ -6,7 +6,6 @@ declare class Model {
     private readonly _iconSize;
     private readonly _windowWidth;
     private readonly _windowHeight;
-    private readonly _hasActiveTypes;
     private readonly _extraInfo;
     readonly allTypes: Array<{
         className: ko.PureComputed<string>;
@@ -15,7 +14,6 @@ declare class Model {
     private _debugToggleCount;
     private _debugToggleLast;
     constructor();
-    get hasActiveTypes(): boolean;
     get showDebug(): boolean;
     set showDebug(value: boolean);
     get iconSize(): number;
@@ -25,6 +23,8 @@ declare class Model {
     get windowHeight(): number;
     set windowHeight(value: number);
     get extraInfo(): string;
+    loadFromStorage(): void;
+    saveToStorage(): void;
     toggleActiveType({ type }: {
         type: PokemonType;
     }): void;

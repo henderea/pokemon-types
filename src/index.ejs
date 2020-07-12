@@ -5,34 +5,7 @@ const title = (packageJson.htmlMeta && packageJson.htmlMeta.title) || packageJso
 const description = (packageJson.htmlMeta && packageJson.htmlMeta.description) || packageJson.description;
 const type = (packageJson.htmlMeta && packageJson.htmlMeta.type) || 'website';
 const siteName = (packageJson.htmlMeta && packageJson.htmlMeta.siteName) || null;
-const baseIcon = (packageJson.htmlMeta && packageJson.htmlMeta.icon && packageJson.htmlMeta.icon.trim().toLowerCase()) || null;
-let imageUrl = (packageJson.htmlMeta && packageJson.htmlMeta.image);
-if(imageUrl) {
-    imageUrl = String(imageUrl).trim();
-    if(/^[/]/.test(imageUrl)) {
-        imageUrl = publicUrl + imageUrl;
-    }
-}
 const themeColor = (packageJson.htmlMeta && packageJson.htmlMeta.themeColor) || null;
-let iconUrl = null;
-if(baseIcon && baseIcon != '') {
-    if(/^gravatar:(\S+)$/.test(baseIcon)) {
-        const gravatarParam = baseIcon.replace(/^gravatar:(\S+)$/, '$1');
-        let gravatarHash = null;
-        if(/^\S+@\S+\.\S+/.test(gravatarParam)) {
-            gravatarHash = require('md5')(gravatarParam);
-        } else if(/^[0-9a-f]{32}$/.test(gravatarParam)) {
-            gravatarHash = gravatarParam;
-        }
-        if(gravatarHash) {
-            iconUrl = `https://www.gravatar.com/avatar/${gravatarHash}.jpg?s=400`;
-        }
-    } else if(/^https?:\/\//.test(baseIcon)) {
-        iconUrl = baseIcon;
-    } else if(/^[/]/.test(baseIcon)) {
-        iconUrl = publicUrl + baseIcon;
-    }
-}
 %>
 <!--suppress HtmlRequiredAltAttribute, RequiredAttributes -->
 <!DOCTYPE html>
@@ -46,18 +19,12 @@ if(baseIcon && baseIcon != '') {
         <% if(siteName) { %>
             <meta property="og:site_name" content="<%= siteName %>" />
         <% } %>
-        <% if(imageUrl) { %>
-            <meta property="og:image" content="<%= imageUrl %>" />
-        <% } else if(imageUrl !== false) { %>
-            <meta property="og:image" content="<%= iconUrl %>" />
-        <% } %>
-        <% if(iconUrl) { %>
-            <link rel="icon" href="<%= iconUrl %>" />
-        <% } else { %>
-            <link rel="icon" href="<%= publicUrl %>/favicon.svg" type="image/svg+xml" />
-            <link rel="shortcut icon" href="<%= publicUrl %>/favicon.svg" type="image/svg+xml" />
-        <% } %>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,900" />
+        <link rel="icon" href="<%= publicUrl %>/favicon.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="<%= publicUrl %>/favicon.svg" type="image/svg+xml" />
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Lato:300,400,900" onload="this.onload=null;this.rel='stylesheet';" />
+        <noscript>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,900" />
+        </noscript>
         <link rel="apple-touch-icon" sizes="360x360" href="<%= publicUrl %>/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -71,19 +38,21 @@ if(baseIcon && baseIcon != '') {
             <h1>JavaScript is required for this page</h1>
         </noscript>
         <div data-bind="text: extraInfo, visible: showDebug" class="extra-info" style="display: none;"></div>
-        <div class="active-types-container">
-            <!-- ko foreach: activeTypes -->
-            <div class="active-type" data-bind="click: $parent.removeActiveType.bind($parent)">
-                <div class="icon" data-bind="class: typeName">
-                    <img data-bind="attr: { 'src': `/images/type-icons/${typeName}.svg`, alt: typeDisplay }" />
+        <div class="main-container">
+            <div class="active-types-container">
+                <!-- ko foreach: activeTypes -->
+                <div class="active-type" data-bind="click: $parent.removeActiveType.bind($parent)">
+                    <div class="icon" data-bind="class: typeName">
+                        <img data-bind="attr: { 'src': `/images/type-icons/${typeName}.svg`, alt: typeDisplay }" />
+                    </div>
                 </div>
+                <!-- /ko -->
             </div>
-            <!-- /ko -->
-        </div>
-        <div class="all-types-container" data-bind="foreach: allTypes">
-            <div class="type" data-bind="click: $parent.toggleActiveType.bind($parent)">
-                <div class="icon" data-bind="class: className">
-                    <img data-bind="attr: { 'src': `/images/type-icons/${type.typeName}.svg`, alt: type.typeDisplay }" />
+            <div class="all-types-container" data-bind="foreach: allTypes">
+                <div class="type" data-bind="click: $parent.toggleActiveType.bind($parent)">
+                    <div class="icon" data-bind="class: className">
+                        <img data-bind="attr: { 'src': `/images/type-icons/${type.typeName}.svg`, alt: type.typeDisplay }" />
+                    </div>
                 </div>
             </div>
         </div>

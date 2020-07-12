@@ -1,20 +1,25 @@
 // @ts-ignore
 import { ko, obs, obsArr, comp } from 'lib/knockout-util.ts';
 
-import { TYPE_NAME_LIST, TYPES, TYPE_NAMES, PokemonType, PokemonTypeName, AttackMultiplier } from 'lib/pokemon-types';
-
-const TYPE_LIST: Array<PokemonType> = PokemonType.convertAll(...TYPE_NAME_LIST);
+import { TYPE_LIST, PokemonTypeName, PokemonType, AttackMultiplier, convertAllTypes, extractAllTypes } from 'lib/pokemon-types';
 
 function multiplierToClass(multiplier: AttackMultiplier): string {
-  if(multiplier == 0) { return 'x0'; }
-  if(multiplier == 0.25) { return 'x0_25'; }
-  if(multiplier == 0.5) { return 'x0_5'; }
-  if(multiplier == 2) { return 'x2'; }
-  if(multiplier == 4) { return 'x4'; }
-  return 'x1';
+  switch(multiplier) {
+    case 0:
+      return 'x0';
+    case 0.25:
+      return 'x0_25';
+    case 0.5:
+      return 'x0_5';
+    case 2:
+      return 'x2';
+    case 4:
+      return 'x4';
+    default:
+      return 'x1';
+  }
 }
 
-// @ts-ignore
 const deploymentId = process.env.VERCEL_URL ? process.env.VERCEL_URL.replace(/^.*?-([a-zA-Z0-9]+)\.vercel\.app.*$/, '$1') : 'N/A';
 
 function classNameComp(self: Model, type: PokemonType): ko.PureComputed<string> {
@@ -32,7 +37,6 @@ class Model {
   private readonly _iconSize: ko.Observable<number>;
   private readonly _windowWidth: ko.Observable<number>;
   private readonly _windowHeight: ko.Observable<number>;
-  private readonly _hasActiveTypes: ko.PureComputed<boolean>;
   private readonly _extraInfo: ko.PureComputed<string>;
   readonly allTypes: Array<{ className: ko.PureComputed<string>, type: PokemonType }>;
   private _debugToggleCount: number = 0;
@@ -45,18 +49,20 @@ class Model {
     this._windowWidth = obs(-1);
     this._windowHeight = obs(-1);
     this._extraInfo = comp(this, (self: Model) => {
+      if(!self.showDebug) { return ''; }
       // @ts-ignore
       const standalone: Optional<boolean> = window.navigator.standalone;
-      return `standalone: ${standalone === true ? 'true' : standalone === false ? 'false' : standalone === undefined ? 'undefined' : `'${standalone}' (${typeof standalone})`}; deployment id: ${deploymentId}; icon size: ${self.iconSize <= 0 ? '?' : self.iconSize}px; window: ${self.windowWidth}x${self.windowHeight}px`;
+      const standaloneDisplay: string = standalone === true ? 'true' : standalone === false ? 'false' : standalone === undefined ? 'undefined' : `'${standalone}' (${typeof standalone})`;
+      let iconSize: number = self.iconSize;
+      let windowWidth: number = self.windowWidth;
+      let windowHeight: number = self.windowHeight;
+      return `standalone: ${standaloneDisplay}; deployment id: ${deploymentId}; icon size: ${iconSize <= 0 ? '?' : iconSize}px; window: ${windowWidth < 0 ? '?' : windowWidth}x${windowHeight < 0 ? '?' : windowHeight}px`;
     });
     this.allTypes = TYPE_LIST.map((type: PokemonType) => ({
       className: classNameComp(this, type),
       type
     }));
-    this._hasActiveTypes = comp(this, (self: Model) => self.activeTypes().length > 0);
   }
-
-  get hasActiveTypes(): boolean { return this._hasActiveTypes(); }
 
   get showDebug(): boolean { return this._showDebug(); }
 
@@ -75,6 +81,26 @@ class Model {
   set windowHeight(value: number) { this._windowHeight(value); }
 
   get extraInfo(): string { return this._extraInfo(); }
+
+  loadFromStorage(): void {
+    const activeTypes: Optional<string> = window.localStorage.getItem('activeTypes');
+    if(activeTypes) {
+      this.activeTypes.removeAll();
+      const typeNames: PokemonTypeName[] = activeTypes.split(/\|/g) as PokemonTypeName[];
+      const types: PokemonType[] = convertAllTypes(...typeNames);
+      while(types.length > 2) { types.pop(); }
+      this.activeTypes.push(...types);
+    }
+  }
+
+  saveToStorage(): void {
+    const activeTypes: PokemonType[] = this.activeTypes();
+    if(activeTypes.length <= 0) {
+      window.localStorage.removeItem('activeTypes');
+    } else {
+      window.localStorage.setItem('activeTypes', extractAllTypes(...activeTypes).join('|'));
+    }
+  }
 
   toggleActiveType({ type }: { type: PokemonType }): void {
     if(this._debugToggleLast == type) {
@@ -96,10 +122,12 @@ class Model {
       }
       this.activeTypes.push(type);
     }
+    this.saveToStorage();
   }
 
   removeActiveType(type: PokemonType): void {
     this.activeTypes.remove(type);
+    this.saveToStorage();
   }
 }
 
