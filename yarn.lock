@@ -826,10 +826,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@henderea/static-site-builder@^1.7.11":
-  version "1.7.11"
-  resolved "https://registry.yarnpkg.com/@henderea/static-site-builder/-/static-site-builder-1.7.11.tgz#e8a3cf30e73a26337a270c939bb90e937dc3d961"
-  integrity sha512-hLC8uqi/cUiw9Nu0ZUaqFrOyxFhlvXAgsVZja2mUW9zZtP/mKwKg52/tLyqeyIQ20CJoVxVWYOKzfQX2Mn+3AA==
+"@henderea/static-site-builder@^1.7.15":
+  version "1.7.15"
+  resolved "https://registry.yarnpkg.com/@henderea/static-site-builder/-/static-site-builder-1.7.15.tgz#7ae72c1de0b8ae2c3725b52555058af0eb1e04b4"
+  integrity sha512-P5v6+RcDITbaot4U1xUMJZiNq4VF1/vYq3uWj3t75P4n1mMRrapx8T17Poc/WLLNWZJPbDsCzvKmeF1r5/UdEQ==
   dependencies:
     "@babel/core" "^7.10.4"
     babel-core "^6.26.3"
@@ -839,6 +839,8 @@
     copy-webpack-plugin "^6.0.3"
     cross-spawn "^7.0.3"
     css-loader "^3.6.0"
+    dotenv "^8.2.0"
+    dotenv-expand "^5.1.0"
     ejs "^3.1.3"
     eslint "^7.4.0"
     file-loader "^6.0.0"
@@ -2766,6 +2768,16 @@ dot-case@^3.0.3:
   dependencies:
     no-case "^3.0.3"
     tslib "^1.10.0"
+
+dotenv-expand@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-5.1.0.tgz#3fbaf020bfd794884072ea26b1e9791d45a629f0"
+  integrity sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==
+
+dotenv@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
 
 duplexer@^0.1.1:
   version "0.1.1"

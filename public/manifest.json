@@ -3,7 +3,7 @@
   "short_name": "Pokémon Types",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "display": "minimal-ui",
+  "display": "standalone",
   "Scope": "/",
   "start_url": "/",
   "icons": [
