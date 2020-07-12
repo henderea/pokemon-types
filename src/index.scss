@@ -96,11 +96,88 @@ body, html {
     transform: scale(1.1);
   }
 
-  img, svg {
+  span {
     height: 60%;
     width:  60%;
     margin: 20%;
   }
+}
+
+.icon-bug {
+  background-image: url('/images/type-icons/bug.svg');
+}
+
+.icon-dark {
+  background-image: url('/images/type-icons/dark.svg');
+}
+
+.icon-dragon {
+  background-image: url('/images/type-icons/dragon.svg');
+}
+
+.icon-electric {
+  background-image: url('/images/type-icons/electric.svg');
+}
+
+.icon-fire {
+  background-image: url('/images/type-icons/fire.svg');
+}
+
+.icon-fairy {
+  background-image: url('/images/type-icons/fairy.svg');
+}
+
+.icon-fighting {
+  background-image: url('/images/type-icons/fighting.svg');
+}
+
+.icon-flying {
+  background-image: url('/images/type-icons/flying.svg');
+}
+
+.icon-ghost {
+  background-image: url('/images/type-icons/ghost.svg');
+}
+
+.icon-grass {
+  background-image: url('/images/type-icons/grass.svg');
+}
+
+.icon-ground {
+  background-image: url('/images/type-icons/ground.svg');
+}
+
+.icon-ice {
+  background-image: url('/images/type-icons/ice.svg');
+}
+
+.icon-normal {
+  background-image: url('/images/type-icons/normal.svg');
+}
+
+.icon-poison {
+  background-image: url('/images/type-icons/poison.svg');
+}
+
+.icon-psychic {
+  background-image: url('/images/type-icons/psychic.svg');
+}
+
+.icon-rock {
+  background-image: url('/images/type-icons/rock.svg');
+}
+
+.icon-steel {
+  background-image: url('/images/type-icons/steel.svg');
+}
+
+.icon-water {
+  background-image: url('/images/type-icons/water.svg');
+}
+
+.icon-element {
+  background-size:  100% 100%;
+  background-color: #fff;
 }
 
 .bug {

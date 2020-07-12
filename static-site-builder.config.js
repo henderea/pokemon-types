@@ -19,14 +19,9 @@ module.exports = function(env, mode, paths) {
       // the max size of assets above which webpack will warn: use null to keep the default, or specify a size with the suffix b, k, m, or g
       maxAssetSize: '2m',
       // extra loaders to add to the start of the list
-      extraLoaders: [{
-        test: /\.svg$/,
-        use: 'raw-loader'
-      }],
+      extraLoaders: [],
       // extra options for the HtmlWebpackPlugin
-      htmlWebpackPluginOptions: {
-        scriptLoading: 'defer'
-      },
+      htmlWebpackPluginOptions: {},
     };
   } else {
     // extra environment content
@@ -38,14 +33,9 @@ module.exports = function(env, mode, paths) {
       // webpack config overrides
       webpack: {},
       // extra loaders to add to the start of the list
-      extraLoaders: [{
-        test: /\.svg$/,
-        use: 'raw-loader'
-      }],
+      extraLoaders: [],
       // extra options for the HtmlWebpackPlugin
-      htmlWebpackPluginOptions: {
-        scriptLoading: 'defer'
-      },
+      htmlWebpackPluginOptions: {},
     };
   }
 };
