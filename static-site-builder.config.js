@@ -23,6 +23,10 @@ module.exports = function(env, mode, paths) {
         test: /\.svg$/,
         use: 'raw-loader'
       }],
+      // extra options for the HtmlWebpackPlugin
+      htmlWebpackPluginOptions: {
+        scriptLoading: 'defer'
+      },
     };
   } else {
     // extra environment content
@@ -38,6 +42,10 @@ module.exports = function(env, mode, paths) {
         test: /\.svg$/,
         use: 'raw-loader'
       }],
+      // extra options for the HtmlWebpackPlugin
+      htmlWebpackPluginOptions: {
+        scriptLoading: 'defer'
+      },
     };
   }
 };

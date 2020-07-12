@@ -826,10 +826,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@henderea/static-site-builder@^1.7.17":
-  version "1.7.17"
-  resolved "https://registry.yarnpkg.com/@henderea/static-site-builder/-/static-site-builder-1.7.17.tgz#92597cf789a3a08fb7ba8118e544263467ddbf1c"
-  integrity sha512-25HRUqj8xB7ab8gcx2SmjhkFfKp03CI0ugGXIx61BmcdZFQGhc5oXNgNLTb8g5dVFXgvsXo7b5QZe0vSaEZlUA==
+"@henderea/static-site-builder@^1.7.18":
+  version "1.7.18"
+  resolved "https://registry.yarnpkg.com/@henderea/static-site-builder/-/static-site-builder-1.7.18.tgz#7b2125dbf73ef8af52a5e62ab056219cab6db79c"
+  integrity sha512-lbhQ5Pmj/UHStqd9y7GlX7fxoiGXQnEILSdYvEphfyZOQK3m0lWpKxuQ16StjOksyClpd4JOonOdMVKuk/DMkw==
   dependencies:
     "@babel/core" "^7.10.4"
     babel-core "^6.26.3"
