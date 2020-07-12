@@ -826,10 +826,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@henderea/static-site-builder@^1.7.15":
-  version "1.7.15"
-  resolved "https://registry.yarnpkg.com/@henderea/static-site-builder/-/static-site-builder-1.7.15.tgz#7ae72c1de0b8ae2c3725b52555058af0eb1e04b4"
-  integrity sha512-P5v6+RcDITbaot4U1xUMJZiNq4VF1/vYq3uWj3t75P4n1mMRrapx8T17Poc/WLLNWZJPbDsCzvKmeF1r5/UdEQ==
+"@henderea/static-site-builder@^1.7.17":
+  version "1.7.17"
+  resolved "https://registry.yarnpkg.com/@henderea/static-site-builder/-/static-site-builder-1.7.17.tgz#92597cf789a3a08fb7ba8118e544263467ddbf1c"
+  integrity sha512-25HRUqj8xB7ab8gcx2SmjhkFfKp03CI0ugGXIx61BmcdZFQGhc5oXNgNLTb8g5dVFXgvsXo7b5QZe0vSaEZlUA==
   dependencies:
     "@babel/core" "^7.10.4"
     babel-core "^6.26.3"
@@ -5810,6 +5810,14 @@ range-parser@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
   integrity sha1-9JvmtIeJTdxA3MlKMi9hEJLgDV4=
+
+raw-loader@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/raw-loader/-/raw-loader-4.0.1.tgz#14e1f726a359b68437e183d5a5b7d33a3eba6933"
+  integrity sha512-baolhQBSi3iNh1cglJjA0mYzga+wePk7vdEX//1dTFd+v4TsQlQE0jitJSNF1OIP82rdYulH7otaVmdlDaJ64A==
+  dependencies:
+    loader-utils "^2.0.0"
+    schema-utils "^2.6.5"
 
 rc@^1.0.1, rc@^1.1.6:
   version "1.2.8"

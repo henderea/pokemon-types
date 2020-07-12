@@ -51,9 +51,9 @@ const { TYPE_LIST } = require('../lib/pokemon-types');
             </div>
             <div class="all-types-container">
                 <% TYPE_LIST.forEach(type => { %>
-                    <div class="type" data-bind="click: () => toggleActiveType('<%= type.typeName %>')" style="display: none;">
+                    <div class="type" data-bind="click: () => toggleActiveType('<%= type.typeName %>')">
                         <div class="icon" data-bind="class: classNames.<%= type.typeName %>">
-                            <img src="<%= publicUrl %>/images/type-icons/<%= type.typeName %>.svg" alt="<%= type.typeDisplay %>" />
+                            <%= require(`../public/images/type-icons/${type.typeName}.svg`).default %>
                         </div>
                     </div>
                 <% }); %>

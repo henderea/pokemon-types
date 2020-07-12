@@ -17,7 +17,12 @@ module.exports = function(env, mode, paths) {
       // the max size of the entrypoint above which webpack will warn: use null to keep the default, or specify a size with the suffix b, k, m, or g
       maxEntryPointSize: null,
       // the max size of assets above which webpack will warn: use null to keep the default, or specify a size with the suffix b, k, m, or g
-      maxAssetSize: '2m'
+      maxAssetSize: '2m',
+      // extra loaders to add to the start of the list
+      extraLoaders: [{
+        test: /\.svg$/,
+        use: 'raw-loader'
+      }],
     };
   } else {
     // extra environment content
@@ -27,7 +32,12 @@ module.exports = function(env, mode, paths) {
       // extra webpack plugins
       plugins: [],
       // webpack config overrides
-      webpack: {}
+      webpack: {},
+      // extra loaders to add to the start of the list
+      extraLoaders: [{
+        test: /\.svg$/,
+        use: 'raw-loader'
+      }],
     };
   }
 };
