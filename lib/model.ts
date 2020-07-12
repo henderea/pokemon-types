@@ -1,7 +1,7 @@
 // @ts-ignore
 import { ko, obs, obsArr, comp } from 'lib/knockout-util.ts';
 
-import { TYPE_LIST, PokemonTypeName, PokemonType, AttackMultiplier, convertAllTypes, extractAllTypes } from 'lib/pokemon-types';
+import { TYPE_LIST, PokemonTypeName, PokemonType, AttackMultiplier, convertAllTypes, extractAllTypes, convertType } from 'lib/pokemon-types';
 
 function multiplierToClass(multiplier: AttackMultiplier): string {
   switch(multiplier) {
@@ -38,9 +38,9 @@ class Model {
   private readonly _windowWidth: ko.Observable<number>;
   private readonly _windowHeight: ko.Observable<number>;
   private readonly _extraInfo: ko.PureComputed<string>;
-  readonly allTypes: Array<{ className: ko.PureComputed<string>, type: PokemonType }>;
+  readonly classNames: { [key in PokemonTypeName]: ko.PureComputed<string> };
   private _debugToggleCount: number = 0;
-  private _debugToggleLast: PokemonType | null = null;
+  private _debugToggleLast: PokemonTypeName | null = null;
 
   constructor() {
     this.activeTypes = obsArr();
@@ -58,10 +58,11 @@ class Model {
       let windowHeight: number = self.windowHeight;
       return `standalone: ${standaloneDisplay}; deployment id: ${deploymentId}; icon size: ${iconSize <= 0 ? '?' : iconSize}px; window: ${windowWidth < 0 ? '?' : windowWidth}x${windowHeight < 0 ? '?' : windowHeight}px`;
     });
-    this.allTypes = TYPE_LIST.map((type: PokemonType) => ({
-      className: classNameComp(this, type),
-      type
-    }));
+    const classNames: Dictionary<ko.PureComputed<string>> = {};
+    TYPE_LIST.forEach((type: PokemonType) => {
+      classNames[type.typeName] = classNameComp(this, type);
+    });
+    this.classNames = classNames as { [key in PokemonTypeName]: ko.PureComputed<string> };
   }
 
   get showDebug(): boolean { return this._showDebug(); }
@@ -102,8 +103,8 @@ class Model {
     }
   }
 
-  toggleActiveType({ type }: { type: PokemonType }): void {
-    if(this._debugToggleLast == type) {
+  toggleActiveType(typeName: PokemonTypeName): void {
+    if(this._debugToggleLast == typeName) {
       this._debugToggleCount++;
       if(this._debugToggleCount >= 4) {
         this._debugToggleLast = null;
@@ -111,9 +112,10 @@ class Model {
         this.showDebug = !this.showDebug;
       }
     } else {
-      this._debugToggleLast = type;
+      this._debugToggleLast = typeName;
       this._debugToggleCount = 1;
     }
+    const type: PokemonType = convertType(typeName);
     if(this.activeTypes().includes(type)) {
       this.activeTypes.remove(type);
     } else {

@@ -22,5 +22,5 @@ window.addEventListener('load', () => {
   window.setTimeout(() => {
     model.loadFromStorage();
     updateSizingInfo();
-  }, 100);
+  }, 50);
 });
