@@ -10,6 +10,9 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 window.addEventListener('load', () => {
+  document.querySelectorAll('.type').forEach((e: Element) => {
+    (e as HTMLElement).style.display = '';
+  });
   let model = new Model();
   ko.applyBindings(model);
   let updateSizingInfo = () => {
