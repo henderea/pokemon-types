@@ -31,6 +31,8 @@ function classNameComp(self: Model, type: PokemonType): ko.PureComputed<string> 
   });
 }
 
+const dbgOrder: PokemonType[] = convertAllTypes('grass', 'water', 'fire', 'ice');
+
 class Model {
   readonly activeTypes: ko.ObservableArray<PokemonType>;
   private readonly _showDebug: ko.Observable<boolean>;
@@ -39,8 +41,7 @@ class Model {
   private readonly _windowHeight: ko.Observable<number>;
   private readonly _extraInfo: ko.PureComputed<string>;
   readonly classNames: { [key in PokemonTypeName]: ko.PureComputed<string> };
-  private _debugToggleCount: number = 0;
-  private _debugToggleLast: PokemonTypeName | null = null;
+  private _debugToggleCounter: number = 0;
 
   constructor() {
     this.activeTypes = obsArr();
@@ -104,18 +105,19 @@ class Model {
   }
 
   toggleActiveType(typeName: PokemonTypeName): void {
-    if(this._debugToggleLast == typeName) {
-      this._debugToggleCount++;
-      if(this._debugToggleCount >= 4) {
-        this._debugToggleLast = null;
-        this._debugToggleCount = 0;
-        this.showDebug = !this.showDebug;
-      }
-    } else {
-      this._debugToggleLast = typeName;
-      this._debugToggleCount = 1;
-    }
+    // if(this._debugToggleLast == typeName) {
+    //   this._debugToggleCount++;
+    //   if(this._debugToggleCount >= 4) {
+    //     this._debugToggleLast = null;
+    //     this._debugToggleCount = 0;
+    //     this.showDebug = !this.showDebug;
+    //   }
+    // } else {
+    //   this._debugToggleLast = typeName;
+    //   this._debugToggleCount = 1;
+    // }
     const type: PokemonType = convertType(typeName);
+    let dbgInc: boolean = false;
     if(this.activeTypes().includes(type)) {
       this.activeTypes.remove(type);
     } else {
@@ -123,6 +125,18 @@ class Model {
         this.activeTypes.shift();
       }
       this.activeTypes.push(type);
+      if(dbgOrder[this._debugToggleCounter] == type) {
+        dbgInc = true;
+      }
+    }
+    if(dbgInc) {
+      this._debugToggleCounter++;
+      if(this._debugToggleCounter >= dbgOrder.length) {
+        this._debugToggleCounter = 0;
+        this.showDebug = !this.showDebug;
+      }
+    } else {
+      this._debugToggleCounter = 0;
     }
     this.saveToStorage();
   }
