@@ -283,6 +283,10 @@ body, html {
   .active-types-container {
     width:  290px;
     height: 170px;
+
+    &.inverse {
+      width: 170px;
+    }
   }
   .active-types-container, .all-types-container {
     border-radius: 85px;
@@ -306,6 +310,10 @@ body, html {
     .active-types-container {
       width:  290px;
       height: 170px;
+
+      &.inverse {
+        width: 170px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 85px;
@@ -330,6 +338,10 @@ body, html {
     .active-types-container {
       width:  290px;
       height: 170px;
+
+      &.inverse {
+        width: 170px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 85px;
@@ -354,6 +366,10 @@ body, html {
     .active-types-container {
       width:  250px;
       height: 150px;
+
+      &.inverse {
+        width: 150px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 75px;
@@ -378,6 +394,10 @@ body, html {
     .active-types-container {
       width:  250px;
       height: 150px;
+
+      &.inverse {
+        width: 150px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 75px;
@@ -402,6 +422,10 @@ body, html {
     .active-types-container {
       width:  250px;
       height: 150px;
+
+      &.inverse {
+        width: 150px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 75px;
@@ -426,6 +450,10 @@ body, html {
     .active-types-container {
       width:  210px;
       height: 130px;
+
+      &.inverse {
+        width: 130px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 65px;
@@ -450,6 +478,10 @@ body, html {
     .active-types-container {
       width:  210px;
       height: 130px;
+
+      &.inverse {
+        width: 130px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 65px;
@@ -474,6 +506,10 @@ body, html {
     .active-types-container {
       width:  210px;
       height: 130px;
+
+      &.inverse {
+        width: 130px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 65px;
@@ -498,6 +534,10 @@ body, html {
     .active-types-container {
       width:  150px;
       height: 90px;
+
+      &.inverse {
+        width: 90px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 45px;
@@ -522,6 +562,10 @@ body, html {
     .active-types-container {
       width:  150px;
       height: 90px;
+
+      &.inverse {
+        width: 90px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 45px;
@@ -546,6 +590,10 @@ body, html {
     .active-types-container {
       width:  150px;
       height: 90px;
+
+      &.inverse {
+        width: 90px;
+      }
     }
     .active-types-container, .all-types-container {
       border-radius: 45px;
@@ -574,6 +622,10 @@ body, html {
     .active-types-container {
       width:  130px;
       height: 80px;
+
+      &.inverse {
+        width: 80px;
+      }
 
       .active-type {
         margin: 7px;
@@ -607,6 +659,10 @@ body, html {
       width:  130px;
       height: 80px;
 
+      &.inverse {
+        width: 80px;
+      }
+
       .active-type {
         margin: 7px;
       }
@@ -638,6 +694,10 @@ body, html {
     .active-types-container {
       width:  130px;
       height: 80px;
+
+      &.inverse {
+        width: 80px;
+      }
 
       .active-type {
         margin: 7px;
