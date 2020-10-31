@@ -38,6 +38,10 @@ body, html {
   width:         290px;
   height:        170px;
 
+  &.inverse {
+    border-color: darkred;
+  }
+
   .active-type {
     display: inline-block;
     margin:  10px;

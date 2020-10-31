@@ -40,7 +40,7 @@ const { TYPE_LIST } = require('../lib/pokemon-types');
         </noscript>
         <div data-bind="text: extraInfo, visible: showDebug" class="extra-info" style="display: none;"></div>
         <div class="main-container">
-            <div class="active-types-container">
+            <div class="active-types-container" data-bind="css: { inverse: inverse }">
                 <!-- ko foreach: activeTypes -->
                 <div class="active-type" data-bind="click: $parent.removeActiveType.bind($parent), visible: true" style="display: none;">
                     <div class="icon" data-bind="class: typeName">
