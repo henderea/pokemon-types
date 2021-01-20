@@ -18,7 +18,7 @@
   "license": "ISC",
   "repository": "",
   "devDependencies": {
-    "@henderea/static-site-builder": "^1.9.3",
+    "@henderea/static-site-builder": "^1.9.4",
     "@types/knockout": "^3.4.69",
     "@types/lodash": "^4.14.168",
     "browser-sync": "^2.26.13",
