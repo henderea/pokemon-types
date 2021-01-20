@@ -274,7 +274,7 @@ body, html {
   box-shadow: 0 0 20px #539ddf;
 }
 
-// 100px - 9x2
+// 100px - 9x2 (~2.3; ~23/10)
 @media screen and (min-width: 1150px) and (min-height: 500px) {
   .all-types-container {
     width:      1130px;
@@ -300,7 +300,7 @@ body, html {
   }
 }
 
-// 100px - 6x3
+// 100px - 6x3 (~1.275; ~51/40)
 @media screen and (min-width: 790px) and (min-height: 620px) {
   @media (max-width: 1150px - 1px) {
     .all-types-container {
@@ -328,7 +328,7 @@ body, html {
   }
 }
 
-// 100px - 3x6
+// 100px - 3x6 (~0.4388; ~7/16)
 @media screen and (min-width: 430px) and (min-height: 980px) {
   @media (max-width: 790px - 1px) {
     .all-types-container {

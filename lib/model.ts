@@ -20,7 +20,7 @@ function multiplierToClass(multiplier: AttackMultiplier): string {
   }
 }
 
-const deploymentId = process.env.VERCEL_URL ? process.env.VERCEL_URL.replace(/^.*?-([a-zA-Z0-9]+)\.vercel\.app.*$/, '$1') : 'N/A';
+const deploymentId = process.env.VERCEL_URL ? process.env.VERCEL_URL.replace(/^.*?-([a-zA-Z0-9]+)(-[^-]+)?\.vercel\.app.*$/, '$1') : 'N/A';
 
 function classNameComp(self: Model, type: PokemonType): ko.PureComputed<string> {
   return comp(self, (self: Model): string => {
