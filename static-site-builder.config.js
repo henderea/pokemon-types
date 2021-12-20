@@ -1,5 +1,7 @@
 const _ = require('lodash');
+// const tailwindcss = require('tailwindcss');
 
+// eslint-disable-next-line no-unused-vars
 module.exports = function(env, mode, paths) {
   if(mode === 'production') {
     // extra environment content
@@ -22,6 +24,10 @@ module.exports = function(env, mode, paths) {
       extraLoaders: [],
       // extra options for the HtmlWebpackPlugin
       htmlWebpackPluginOptions: {},
+      // override options for postcss
+      // postcssOptions: {
+      //   plugins: ['postcss-preset-env', tailwindcss]
+      // },
     };
   } else {
     // extra environment content
@@ -36,6 +42,10 @@ module.exports = function(env, mode, paths) {
       extraLoaders: [],
       // extra options for the HtmlWebpackPlugin
       htmlWebpackPluginOptions: {},
+      // override options for postcss
+      // postcssOptions: {
+      //   plugins: ['postcss-preset-env', tailwindcss]
+      // },
     };
   }
 };

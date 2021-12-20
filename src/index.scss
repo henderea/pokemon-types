@@ -11,6 +11,16 @@ body, html {
   overflow: hidden;
 }
 
+body, html {
+  background-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  body, html {
+    background-color: #181A1F;
+  }
+}
+
 .main-container {
   margin:   0;
   padding:  0;
