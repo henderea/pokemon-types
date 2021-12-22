@@ -15,17 +15,6 @@ body, html {
   background-color: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  body, html {
-    background-color: #181A1F;
-  }
-
-  .extra-info {
-    border-color: #fff;
-    color: #fff;
-  }
-}
-
 .main-container {
   margin:   0;
   padding:  0;
@@ -731,3 +720,16 @@ body, html {
     }
   }
 }
+
+
+@media (prefers-color-scheme: dark) {
+  body, html {
+    background-color: #181A1F;
+  }
+
+  .extra-info {
+    border-color: #fff;
+    color: #fff;
+  }
+}
+
