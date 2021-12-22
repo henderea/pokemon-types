@@ -1,6 +1,6 @@
 {
   "name": "pokemon-types",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A tool for checking Pokémon type match-ups",
   "main": "",
   "scripts": {
