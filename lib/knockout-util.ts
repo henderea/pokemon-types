@@ -12,8 +12,8 @@ function obsArr<T>(data: T[] = []): ko.ObservableArray<T> {
 
 function comp<S, T>(self: S, read: ((self: S) => T), write: Optional<(self: S, val: T) => void> = null): ko.PureComputed<T> {
   return ko.pureComputed({
-    read() { return read(this); },
-    write(val: T) { write && write(this, val); },
+    read(this: S) { return read(this); },
+    write(this: S, val: T) { write && write(this, val); },
     owner: self
   });
 }
