@@ -57,9 +57,9 @@ class Model {
       // @ts-ignore
       const standalone: Optional<boolean> = window.navigator.standalone;
       const standaloneDisplay: string = standalone === true ? 'true' : standalone === false ? 'false' : standalone === undefined ? 'undefined' : `'${standalone}' (${typeof standalone})`;
-      let iconSize: number = self.iconSize;
-      let windowWidth: number = self.windowWidth;
-      let windowHeight: number = self.windowHeight;
+      const iconSize: number = self.iconSize;
+      const windowWidth: number = self.windowWidth;
+      const windowHeight: number = self.windowHeight;
       return `standalone: ${standaloneDisplay}; deployment id: ${deploymentId}; icon size: ${iconSize <= 0 ? '?' : iconSize}px; window: ${windowWidth < 0 ? '?' : windowWidth}x${windowHeight < 0 ? '?' : windowHeight}px`;
     });
     const classNames: Dictionary<ko.PureComputed<string>> = {};

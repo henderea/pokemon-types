@@ -10,12 +10,12 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 window.addEventListener('load', () => {
-  let model = new Model();
+  const model = new Model();
   ko.applyBindings(model);
-  let updateSizingInfo = () => {
+  const updateSizingInfo = () => {
     model.windowWidth = window.innerWidth;
     model.windowHeight = window.innerHeight;
-    let icon: HTMLElement | null = document.querySelector('.icon') as HTMLElement | null;
+    const icon: HTMLElement | null = document.querySelector('.icon') as HTMLElement | null;
     model.iconSize = icon ? icon.offsetWidth : -1;
   };
   window.addEventListener('resize', updateSizingInfo);
