@@ -20,19 +20,19 @@
   "license": "ISC",
   "repository": "",
   "devDependencies": {
-    "@henderea/static-site-builder": "^1.10.2",
-    "@types/knockout": "^3.4.71",
-    "@types/lodash": "^4.14.178",
+    "@henderea/static-site-builder": "^1.10.8",
+    "@types/knockout": "^3.4.72",
+    "@types/lodash": "^4.14.191",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
-    "browser-sync": "^2.27.7",
-    "concurrently": "^6.5.1",
+    "browser-sync": "^2.29.0",
+    "concurrently": "^7.6.0",
     "eslint": "^8.36.0",
     "eslint-config-henderea": "1.1.5",
     "eslint-plugin-import": "^2.27.5",
-    "serve": "^13.0.2",
+    "serve": "^14.2.0",
     "typescript": "^5.0.2",
-    "vercel": "^23.1.2"
+    "vercel": "^28.17.0"
   },
   "dependencies": {
     "knockout": "^3.5.1",
